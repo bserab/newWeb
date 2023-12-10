@@ -34,3 +34,9 @@
   button {
     margin-left: 5px;
   }
+  
+  .maker{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
