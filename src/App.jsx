@@ -3,8 +3,16 @@ import '../style.css';
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem('tasks'));
+    if (storedTasks) {
+      setTasks(storedTasks);
+    }
+  }, []);
+
   const [newTask, setNewTask] = useState('');
   const [qrCodeUrl, setQrCodeUrl] = useState('');
+
 
   useEffect(() => {
     const generateRandomQrCode = async () => {
@@ -23,7 +31,9 @@ function App() {
 
   const addTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, newTask]);
+      const newTasks = [...tasks, newTask]
+      localStorage.setItem('tasks', JSON.stringify(newTasks))
+      setTasks(newTasks);
       setNewTask('');
     }
   };
@@ -32,6 +42,7 @@ function App() {
     const newTasks = [...tasks];
     newTasks.splice(index, 1);
     setTasks(newTasks);
+    localStorage.setItem('tasks',JSON.stringify(newTasks));
   };
 
   return (
