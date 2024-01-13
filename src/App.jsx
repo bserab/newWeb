@@ -35,6 +35,7 @@ function App() {
       localStorage.setItem('tasks', JSON.stringify(newTasks))
       setTasks(newTasks);
       setNewTask('');
+      setNewTaskAdded(true);
     }
   };
 
